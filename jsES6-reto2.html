@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>RETO 2</p>
+    <p>Haz una clase llamada Password que siga las siguientes condiciones:
+
+        • Que tenga los atributos longitud y contraseña . Por defecto, la longitud será de 8.
+
+        • Los constructores serán los siguiente:
+        Incluye el método que genere una contraseña aleatoria con esa longitud.</p>
+
+        <p>Visualizar resultado en consola</p>
+
+    <script>
+        class Password {
+            constructor(longitud = 8) {
+                this.longitud = longitud;
+                this.password = this.generar_password()
+            }
+            generar_password() {
+                let numeros = "0123456789";
+                let letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                let simbolos = "!#$%&'()*+,-./:;<=>?@[\]^_{|}~";
+                let todo = numeros + letras + simbolos;
+                let clave = "";
+                for(let i = 0; i<this.longitud;i++){
+                    let aleatorio = Math.floor(Math.random()*todo.length);
+                   // clave += todo.charAt(aleatorio);
+                    clave = clave + todo.charAt(aleatorio);
+                }
+                return clave;
+            }
+
+            get doble(){
+                return this.longitud * 2
+            }
+
+
+        }
+
+        let password1 = new Password();
+        console.log(password1.password);
+
+        let password2 = new Password();
+        console.log(password2.password);
+
+
+
+    </script>
+</body>
+
+</html>

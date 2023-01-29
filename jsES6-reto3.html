@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p>
+        Crearemos una superclase llamada Electrodoméstico con las siguientes
+        características:
+
+        • Sus atributos son precio base, color, consumo energético (letras entre A y F) y
+        peso. Indica que se podrán heredar.
+
+        • Por defecto, el color será blanco, el consumo energético será F, el precio Base es
+        de 100 € y el peso de 5 kg. Usa constantes para ello.
+
+        • Los colores disponibles son blanco, negro, rojo, azul y gris. No importa si el
+        nombre esta en mayúsculas o en minúsculas.
+
+        Impulsamos { talento
+        }
+
+        Los métodos que implementara serán:
+
+        • Métodos get de todos los atributos.
+
+        • comprobarConsumoEnergetico(char letra): comprueba que la letra es correcta,
+        sino es correcta usara la letra por defecto. Se invocara al crear el objeto y no será
+        visible.
+
+        • comprobarColor(String color): comprueba que el color es correcto, sino lo es
+        usa el color por defecto. Se invocara al crear el objeto y no será visible.
+
+        • precioFinal(): según el consumo energético, aumentara su precio, y según su
+        tamaño, también.
+    </p>
+    <p>
+        Esta es la lista de precios:
+
+        Impulsamos { talento
+        }
+
+        Crearemos una subclase llamada Lavadora con las siguientes características:
+
+        • Su atributo es carga, además de los atributos heredados.
+
+        • Por defecto, la carga es de 5 kg. Usa una constante para ello.
+
+        Recuerda que debes llamar al constructor de la clase padre.
+
+        Los métodos que se implementara serán:
+
+        • Método get de carga.
+
+        • precioFinal():, si tiene una carga mayor de 30 kg, aumentara el precio 50 €, sino
+        es así no se incrementara el precio. Llama al método padre y añade el código
+        necesario. Recuerda que las condiciones que hemos visto en la clase
+        Electrodomestico también deben afectar al precio.
+    </p>
+    <p>
+        Crearemos una subclase llamada Televisión con las siguientes características:
+
+        • Sus atributos son resolución (en pulgadas) y 4K(booleano), además de los atributos
+        heredados.
+
+        • Por defecto, la resolución será de 20 pulgadas y el 4k será false.
+
+        Recuerda que debes llamar al constructor de la clase padre.
+
+        Los métodos que se implementara serán:
+
+        • Método get de resolución y atributo de 4K.
+
+        • precioFinal(): si tiene una resolución mayor de 40 pulgadas, se incrementara el
+        precio un 30% y si tiene 4k incorporado, aumentara 50 €. Recuerda que las
+        condiciones que hemos visto en la clase Electrodoméstico también deben afectar al
+        precio.
+
+        Impulsamos { talento
+        }
+
+        Ahora crea una clase mainApp que realice lo siguiente:
+
+        • Crea un array de Electrodomésticos de 10 posiciones.
+
+        • Asigna a cada posición un objeto de las clases anteriores con los valores que desees.
+
+        • Ahora, recorre este array y ejecuta el método precioFinal().
+
+        • Deberás mostrar el precio de cada clase, es decir, el precio de todas las televisiones
+        por un lado, el de las lavadoras por otro y la suma de los Electrodomésticos (puedes
+        crear objetos Electrodoméstico, pero recuerda que Televisión y Lavadora también son
+        electrodomésticos). Por ejemplo, si tenemos un Electrodoméstico con un precio final
+        de 300, una lavadora de 200 y una televisión de 500, el resultado final será de 1000
+        (300+200+500) para electrodomésticos, 200 para lavadora y 500 para televisión.
+    </p>
+
+    <p>Visualizar resultado en consola</p>
+    <script>
+        class Electrodomestico {
+            constructor(color = "Blanco", consumo = "F", precioBase = 100, peso = 5) {
+                this.color = this.comprobarColor(color);
+                this.consumo = this.comprobarConsumoEnergetico(consumo);
+                // this.precioBase = this.precioFinal(precioBase, peso);
+                this.peso = peso;
+                this.precioBase = precioBase;
+                this._precioFinal = this.precioFinal();
+            }
+            comprobarConsumoEnergetico(letra) {
+                // letra = prompt("Indroduce el consumo energetico del electrodomestico")
+                if (letra != "A" & letra != "B" & letra != "C" & letra != "D" & letra != "E" & letra != "F") {
+                    return "F";
+                } else
+                    return letra
+            }
+            comprobarColor(color) {
+                // color = prompt("Indroduce el color del electrodomestico")
+                if (color != "negro" && color != "rojo" && color != "azul" && color != "gris") {
+                    return "blanco";
+                } else
+                    return color
+            }
+            precioConsumo() {
+                let consumo = this.consumo;
+                let precioBase = this.precioBase;
+                let precioConsumo;
+                switch (consumo) {
+                    case "A":
+                        precioConsumo = precioBase + 100;
+                        return precioConsumo;
+                        break;
+                    case "B":
+                        precioConsumo = precioBase + 80;
+                        return precioConsumo;
+                        break;
+                    case "C":
+                        precioConsumo = precioBase + 60;
+                        return precioConsumo;
+                        break;
+                    case "D":
+                        precioConsumo = precioBase + 50;
+                        return precioConsumo;
+                        break;
+                    case "E":
+                        precioConsumo = precioBase + 30;
+                        return precioConsumo;
+                        break;
+                    case "F":
+                        precioConsumo = precioBase + 10;
+                        return precioConsumo;
+                        break;
+                }
+            }
+            precioPeso() {
+                let peso = this.peso;
+                let precio;
+                switch (true) {
+                    case (peso <= 19):
+                        precio = 100 + 10;
+                        return precio;
+                        break;
+                    case (peso >= 20):
+                        precio = 100 + 50;
+                        return precio;
+                        break;
+                    case (peso >= 50):
+                        precio = 100 + 80;
+                        return precio;
+                        break;
+                    case (peso >= 80):
+                        precio = 100 + 100;
+                        return precio;
+                        break;
+                }
+            }
+            precioFinal() {
+                let todo = this.precioConsumo() + this.precioPeso();
+                return todo;
+            }
+        }
+        class Lavadora extends Electrodomestico {
+            constructor(carga = 5) {
+                super(carga);
+                this.carga = carga
+            }
+            precioFinal() {
+                let todo = this.precioConsumo() + this.precioPeso() + this.precioCarga();
+                return todo;
+            }
+            precioCarga() {
+                let carga = this.carga
+                let precioCarga;
+                if (carga > 5) {
+                    precioCarga = 50;
+                    return precioCarga;
+                } else {
+                    precioCarga = 0;
+                    return precioCarga;
+                }
+            }
+        }
+        class Television extends Electrodomestico {
+            constructor(resolucion = 20, cuatroK = false) {
+                super(resolucion, cuatroK);
+                this.resolucion = resolucion;
+                this.cuatroK = cuatroK;
+            }
+
+            precioFinal() {
+                let todo = this.precioConsumo() + this.precioPeso() + this.precioCuatroK() + this.precioResolucion();
+                return todo;
+            }
+            precioResolucion() {
+                let resolucion = this.resolucion
+                let porcentajeResolucion;
+                if (resolucion > 40) {
+                    porcentajeResolucion = (30 * this.precioConsumo() + this.precioPeso() + this.precioCuatroK()) / 100;
+                    return porcentajeResolucion 
+                }
+                else {
+                    (resolucion < 40)
+                    porcentajeResolucion = 0;
+                    return porcentajeResolucion;
+                }
+            }
+            precioCuatroK() {
+                let cuatroK = this.cuatroK
+                let precioCuatroK;
+                if (cuatroK = true) {
+                    precioCuatroK = 50;
+                    return precioCuatroK;
+                } else {
+                    (cuatroK = false)
+                    precioCuatroK = 0;
+                    return precioCuatroK;
+                }
+            }
+        }
+
+        /* Ahora crea una clase mainApp que realice lo siguiente:
+ 
+         • Crea un array de Electrodomésticos de 10 posiciones.
+ 
+         • Asigna a cada posición un objeto de las clases anteriores con los valores que desees.
+ 
+         • Ahora, recorre este array y ejecuta el método precioFinal().
+ 
+         • Deberás mostrar el precio de cada clase, es decir, el precio de todas las televisiones
+         por un lado, el de las lavadoras por otro y la suma de los Electrodomésticos (puedes
+         crear objetos Electrodoméstico, pero recuerda que Televisión y Lavadora también son
+         electrodomésticos). Por ejemplo, si tenemos un Electrodoméstico con un precio final
+         de 300, una lavadora de 200 y una televisión de 500, el resultado final será de 1000
+         (300+200+500) para electrodomésticos, 200 para lavadora y 500 para televisión.*/
+
+
+        class mainApp {
+            constructor() {
+                this.electrodomesticos = []
+            }
+            imprimir_precios() {
+                let tipos = ["Electrodomestico", "Television", "Lavadora"]
+                let total_lavadoras = 0
+                let total_televisiones = 0
+                let total_electrodomesticos = 0
+
+                for (let electrodomestico of this.electrodomesticos) {
+                    switch (electrodomestico.constructor.name) {
+                        case 'Lavadora': 
+                            total_lavadoras = total_lavadoras + electrodomestico.precioFinal();
+                            total_electrodomesticos = total_electrodomesticos + electrodomestico.precioFinal();
+                            break;
+                        case 'Television': 
+                            total_televisiones = total_televisiones + electrodomestico.precioFinal();
+                            total_electrodomesticos = total_electrodomesticos + electrodomestico.precioFinal();
+                            break;
+                        case 'Electrodomestico': 
+                            total_electrodomesticos = total_electrodomesticos + electrodomestico.precioFinal();
+                            break;
+                    }
+                }
+                console.log("El precio total de las lavadoras es: " + total_lavadoras)
+                console.log("El precio total de las teles es: " + total_televisiones)
+                console.log("El precio total de los electrodomesticos es: " + total_electrodomesticos)
+            }
+            calcular_precios() {
+                for (let i = 0; i < this.electrodomesticos.length; i++) {
+                    this.electrodomesticos[i].precioFinal()
+                }
+            }
+            llenar_electrodomesticos(cantidad) {
+                let colores = ['blanco', 'azul', 'negro', 'rojo', 'gris'];
+                let color = ''
+                let posibles_objetos = []
+                let peso = 0
+                for (let i = 0; i < 10; i++) {
+                    color = colores[Math.floor(Math.random() * colores.length)]
+                    peso = Math.floor(Math.random() * (20 - 40 + 1)) + 20;
+                    posibles_objetos = [this.generar_lavadora(color, peso), this.generar_television(color, peso)]
+                    let posicion = Math.floor(Math.random() * posibles_objetos.length)
+                    let objeto = posibles_objetos[posicion]
+                    this.electrodomesticos.push(objeto)
+                }
+            }
+            generar_lavadora(color, peso) {
+                let carga = Math.random() * 10
+                let lavadora = new Lavadora(carga)
+                lavadora.color = color
+                lavadora.peso = peso
+                return lavadora
+
+            }
+
+            generar_television(color, peso) {
+                let minimum = 10
+                let maximum = 50
+                let resolucion = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+                let fourK = Math.random() < 0.5;
+                let television = new Television(resolucion, fourK)
+                television.color = color
+                television.peso = peso
+                return television
+
+            }
+        }
+        app = new mainApp()
+        app.llenar_electrodomesticos()
+        app.calcular_precios()
+        app.imprimir_precios()
+    </script>
+</body>
+
+</html>
